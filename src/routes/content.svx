@@ -1,0 +1,150 @@
+<script lang="ts">
+import { registerMasonry } from 'masonry-pf';
+
+interface PinnedRepo {
+  name: string;
+  description: string;
+  url: string;
+  stargazerCount: number;
+  forkCount: number;
+  primaryLanguage?: {
+    name: string;
+    color: string;
+  };
+}
+
+export let pinnedRepos: PinnedRepo[] = [];
+export let error: string | undefined = undefined;
+</script>
+
+<div class="flex flex-col justify-center items-center h-full">
+<div use:registerMasonry class="masonry gap-6">
+
+<div style="height: 100px;">
+
+**Hi, I am Falk**
+
+</div>
+
+<div style="height: 100px;">
+
+# Contact Information
+
+- 🐙 [github.com/FalkZ](https://github.com/FalkZ)
+- ✉️ [me@falk.contact](me@falk.contact)
+
+</div>
+
+
+<div style="height: 240px;">
+
+I build software in Zurich. My focus is on the web, functional programming and software architecture.
+
+Good software is simple software. I work on my craft to simplify structure, naming and architecture in every project I build.
+
+</div>
+<div style="height: 140px;">
+
+# Currently Working
+
+I work at [Liip.ch](https://liip.ch), a digital agency based in switzerland.
+
+</div>
+<div style="height: 140px;">
+
+# Education
+
+- Bachelor in Computer Science
+- Automation Technician EFZ
+
+</div>
+<div style="height: 240px;">
+
+## Über mich
+
+In meiner Freizeit betätige ich mich gerne Kreativ, baue Möbel aus Holz, koche oder designe alles Mögliche. Sportlich bin ich gerne draussen unterwegs, momentan intessiere ich mich fürs Bouldern und Crawl.
+
+
+</div>
+<div style="height: auto;">
+
+## Recent Projects
+
+{#if error}
+  <p>Error loading projects: {error}</p>
+{:else if pinnedRepos.length > 0}
+  <ul>
+    {#each pinnedRepos as repo}
+      <li>
+        <a href={repo.url} target="_blank" rel="noopener noreferrer">
+          <strong>{repo.name}</strong>
+        </a>
+        {#if repo.description}
+          <p>{repo.description}</p>
+        {/if}
+        <div class="repo-meta">
+          {#if repo.primaryLanguage}
+            <span style="color: {repo.primaryLanguage.color}">● {repo.primaryLanguage.name}</span>
+          {/if}
+          <span>⭐ {repo.stargazerCount}</span>
+          <span>🍴 {repo.forkCount}</span>
+        </div>
+      </li>
+    {/each}
+  </ul>
+{:else}
+  <p>No pinned repositories found.</p>
+{/if}
+
+</div>
+
+</div>
+
+</div>
+
+<style>
+
+ .masonry {
+     display: grid;
+  
+     justify-content: center;
+     
+     --width: 250px;
+     --gap: 1.5rem;
+
+     padding: var(--gap);
+
+      grid-template-columns: repeat(1, var(--width));
+      grid-template-rows: masonry;
+   }
+
+   /* 2 * 250px + 3 * 24px = 500px + 72px = 572px */
+   @media (min-width: 572px) {
+     .masonry {
+       grid-template-columns: repeat(2, var(--width));
+     }
+   }
+
+   /* 3 * 250px + 4 * 24px = 750px + 96px = 846px */
+   @media (min-width: 846px) {
+     .masonry {
+       grid-template-columns: repeat(3, var(--width));
+     }
+   }
+
+   /* 4 * 250px + 5 * 24px = 1000px + 120px = 1120px */
+   @media (min-width: 1120px) {
+     .masonry {
+       grid-template-columns: repeat(4, var(--width));
+     }
+   }
+
+   /* 5 * 250px + 6 * 24px = 1250px + 144px = 1394px */
+   @media (min-width: 1394px) {
+     .masonry {
+       grid-template-columns: repeat(5, var(--width));
+     }
+}
+
+
+</style>

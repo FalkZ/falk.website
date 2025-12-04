@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+@import "tailwindcss";
+
+@utility font-nunito-* {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: --value(integer);
+    font-style: normal;
+}
+
+@utility font-nunito-sans-* {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: --value(integer);
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
+}
+
+@utility font-google-sans-flex-* {
+    font-family: "Google Sans Flex", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: --value(integer);
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100,
+        "GRAD" 0,
+        "ROND" 0;
+}
+
+@utility font-inter-* {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: --value(integer);
+    font-style: normal;
+}
+
+html,
+body {
+    @apply font-nunito-400 h-full leading-6 tracking-wide;
+}
+
+strong,
+b,
+h1,
+h2 {
+    @apply font-google-sans-flex-800 tracking-[1.02];
+}
+
+a {
+    @apply underline underline-offset-2;
+}

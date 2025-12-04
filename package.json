@@ -1,0 +1,35 @@
+{
+    "name": "falk.website",
+    "version": "0.0.1",
+    "devDependencies": {
+        "@sveltejs/adapter-static": "^3.0.10",
+        "@sveltejs/kit": "^2.48.5",
+        "@sveltejs/vite-plugin-svelte": "^6.2.1",
+        "@tailwindcss/vite": "^4.1.17",
+        "eslint": "^9.39.1",
+        "ijw": "^0.0.7",
+        "mdsvex": "^0.12.6",
+        "prettier": "^3.7.2",
+        "svelte": "^5.43.8",
+        "svelte-check": "^4.3.4",
+        "tailwindcss": "^4.1.17",
+        "typescript": "^5.9.3",
+        "vite": "^7.2.2",
+        "vite-plugin-devtools-json": "^1.0.0"
+    },
+    "packageManager": "bun@1.3.0",
+    "private": true,
+    "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "format": "prettier --write .",
+        "preview": "vite preview",
+        "prepare": "svelte-kit sync || echo ''",
+        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    },
+    "type": "module",
+    "dependencies": {
+        "masonry-pf": "^1.1.1"
+    }
+}
