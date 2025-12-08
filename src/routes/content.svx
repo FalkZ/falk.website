@@ -1,5 +1,11 @@
 <script lang="ts">
 import { registerMasonry } from 'masonry-pf';
+import {
+  IconMail,
+   IconMailFast,
+    IconBrandGithub,
+    
+  } from '@tabler/icons-svelte';
 
 interface PinnedRepo {
   name: string;
@@ -19,35 +25,31 @@ export let error: string | undefined = undefined;
 
 <div class="flex flex-col justify-center items-center h-full">
 <div use:registerMasonry class="masonry gap-6">
+<div style="height: 30px;" class="self-start">
 
-<div style="height: 100px;">
-
-**Hi, I am Falk**
-
-</div>
-
-<div style="height: 100px;">
-
-# Contact Information
-
-- 🐙 [github.com/FalkZ](https://github.com/FalkZ)
-- ✉️ [me@falk.contact](me@falk.contact)
+**Hi, I'm Falk**
 
 </div>
+</div>
+<div use:registerMasonry class="masonry gap-6">
+
+
+
+
 
 
 <div style="height: 240px;">
 
-I build software in Zurich. My focus is on the web, functional programming and software architecture.
+I build software centered around the the web and functional programming.
 
-Good software is simple software. I work on my craft to simplify structure, naming and architecture in every project I build.
+Good software is simple. <br> I constantly refine my skill in finding the underlying concepts of a domain. I use these concepts to write the simplest code possible.
 
 </div>
 <div style="height: 140px;">
 
-# Currently Working
+# Current Work
 
-I work at [Liip.ch](https://liip.ch), a digital agency based in switzerland.
+I work at [L*II*P](https://liip.ch), a digital agency based in Switzerland.
 
 </div>
 <div style="height: 140px;">
@@ -55,17 +57,10 @@ I work at [Liip.ch](https://liip.ch), a digital agency based in switzerland.
 # Education
 
 - Bachelor in Computer Science
-- Automation Technician EFZ
+- Automation Technician
 
 </div>
-<div style="height: 240px;">
 
-## Über mich
-
-In meiner Freizeit betätige ich mich gerne Kreativ, baue Möbel aus Holz, koche oder designe alles Mögliche. Sportlich bin ich gerne draussen unterwegs, momentan intessiere ich mich fürs Bouldern und Crawl.
-
-
-</div>
 <div style="height: auto;">
 
 ## Recent Projects
@@ -77,7 +72,7 @@ In meiner Freizeit betätige ich mich gerne Kreativ, baue Möbel aus Holz, koche
     {#each pinnedRepos as repo}
       <li>
         <a href={repo.url} target="_blank" rel="noopener noreferrer">
-          <strong>{repo.name}</strong>
+          {repo.name}
         </a>
         {#if repo.description}
           <p>{repo.description}</p>
@@ -95,6 +90,16 @@ In meiner Freizeit betätige ich mich gerne Kreativ, baue Möbel aus Holz, koche
 {:else}
   <p>No pinned repositories found.</p>
 {/if}
+
+</div>
+
+
+<div style="height: 100px;">
+
+# Contact Information
+
+<IconBrandGithub /> [github.com/FalkZ](https://github.com/FalkZ)
+<IconMailFast /> [hi@falk.contact](hi@falk.contact)
 
 </div>
 

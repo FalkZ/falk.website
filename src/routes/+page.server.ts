@@ -17,7 +17,7 @@ export const load: PageServerLoad = async () => {
     const query = `
     query {
       user(login: "FalkZ") {
-        pinnedItems(first: 6, types: REPOSITORY) {
+        pinnedItems(first: 4, types: REPOSITORY) {
           nodes {
             ... on Repository {
               name

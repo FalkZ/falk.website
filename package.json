@@ -30,6 +30,7 @@
     },
     "type": "module",
     "dependencies": {
+        "@tabler/icons-svelte": "^3.35.0",
         "masonry-pf": "^1.1.1"
     }
 }

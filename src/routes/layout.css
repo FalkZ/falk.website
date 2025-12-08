@@ -53,3 +53,7 @@ h2 {
 a {
     @apply underline underline-offset-2;
 }
+
+.masonry > div {
+    @apply flex flex-col gap-3;
+}
