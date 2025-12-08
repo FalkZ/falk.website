@@ -1,15 +1,8 @@
 {
     "languages": {
-        "Markdown": {
-            "format_on_save": "on",
-            "formatter": "language_server"
-        },
         "Svelte": {
             "format_on_save": "on",
             "formatter": "prettier"
         }
-    },
-    "file_types": {
-        "Markdown": ["svelte", "svx"]
     }
 }
