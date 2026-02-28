@@ -21,7 +21,7 @@
 </script>
 
 <div
-    class="flex flex-col justify-center items-center min-w-full w-fit min-h-full py-12"
+    class="flex flex-col justify-center items-center min-w-full w-fit min-h-full py-18"
 >
     <div use:masonryAction class="masonry gap-9 py-0 -mt-6 p-6">
         <Header />
