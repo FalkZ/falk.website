@@ -8,7 +8,7 @@
 
     <p class="flex mb-1.5">
         <span class="w-7.5"><IconBrandGithub stroke={1.55} /></span>
-        <a href="https://github.com/FalkZ">github.com/FalkZ</a>
+        <a href="https://github.com/FalkZ">github.com/falkz</a>
     </p>
     <p class="flex">
         <span class="w-7.5"> <IconMail stroke={1.55} /> </span>
