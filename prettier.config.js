@@ -6,15 +6,7 @@ import ijwConfig from "ijw/prettier";
  */
 const config = {
     ...ijwConfig,
-    overrides: [
-        ...ijwConfig.overrides,
-        {
-            files: "*.svx",
-            options: {
-                parser: "markdown",
-            },
-        },
-    ],
+    htmlWhitespaceSensitivity: "strict",
 };
 
 export default config;

@@ -1,5 +1,12 @@
 {
     "permissions": {
-        "allow": ["Edit", "Write", "Read", "WebSearch", "Bash(find)"]
+        "allow": [
+            "Edit",
+            "Write",
+            "Read",
+            "WebSearch",
+            "Bash(find)",
+            "Bash(npm)"
+        ]
     }
 }

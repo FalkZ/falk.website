@@ -40,7 +40,13 @@
 
 html,
 body {
-    @apply font-nunito-400 h-full leading-6 tracking-wide;
+    @apply font-nunito-400 h-full leading-6 tracking-wide text-[#011635];
+}
+
+body {
+    @apply overflow-auto;
+
+    scrollbar-gutter: stable;
 }
 
 strong,
@@ -56,4 +62,51 @@ a {
 
 .masonry > div {
     @apply flex flex-col gap-3;
+
+    & > * {
+        @apply -my-[0.35rem];
+    }
 }
+
+h1 {
+    @apply mb-1.5;
+}
+
+.masonry svg {
+    @apply -ml-0.5;
+}
+
+/* Minimalist black and white scrollbar */
+::-webkit-scrollbar {
+    width: 2px;
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+::selection {
+    background: #ff6254cc;
+    background: #011635;
+
+    color: white;
+}
+
+::-moz-selection {
+    background: #011635;
+
+    color: white;
+}
+
+html {
+    scrollbar-color: #000 #fff;
+    scrollbar-width: thin;
+}
+
+/*#E34234*/
