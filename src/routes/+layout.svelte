@@ -1,36 +1,39 @@
 <script lang="ts">
     import "./layout.css";
-    import favicon1 from "$lib/assets/favicon-1col.svg";
-    import favicon2 from "$lib/assets/favicon-2col.svg";
-    import favicon3 from "$lib/assets/favicon-3col.svg";
-    import favicon4 from "$lib/assets/favicon-4col.svg";
-    import favicon5 from "$lib/assets/favicon-5col.svg";
+    import raw1 from "$lib/assets/favicon-1col.svg?raw";
+    import raw2 from "$lib/assets/favicon-2col.svg?raw";
+    import raw3 from "$lib/assets/favicon-3col.svg?raw";
+    import raw4 from "$lib/assets/favicon-4col.svg?raw";
+    import raw5 from "$lib/assets/favicon-5col.svg?raw";
+
+    import { MediaQuery } from "svelte/reactivity";
+
+    const lightMode = new MediaQuery("prefers-color-scheme: light");
+
+    let fill = $derived(lightMode ? "#000000" : "#ffffff");
 
     let { children } = $props();
 
-    const favicons = [
-        { minWidth: 1856, href: favicon5 },
-        { minWidth: 1394, href: favicon4 },
-        { minWidth: 960, href: favicon3 },
-        { minWidth: 608, href: favicon2 },
-        { minWidth: 0, href: favicon1 },
-    ];
+    const toDataUri = (svg: string, fill: string) =>
+        `data:image/svg+xml,${encodeURIComponent(svg.replaceAll("#011635", fill))}`;
 
-    let faviconHref = $state(favicon1);
+    const favicons = $derived([
+        { minWidth: 1856, svg: toDataUri(raw5, fill) },
+        { minWidth: 1394, svg: toDataUri(raw4, fill) },
+        { minWidth: 960, svg: toDataUri(raw3, fill) },
+        { minWidth: 608, svg: toDataUri(raw2, fill) },
+        { minWidth: 0, svg: toDataUri(raw1, fill) },
+    ]);
 
-    $effect(() => {
-        const update = () => {
-            const match = favicons.find((f) => window.innerWidth >= f.minWidth);
-            if (match) faviconHref = match.href;
-        };
-        update();
-        window.addEventListener("resize", update);
-        return () => window.removeEventListener("resize", update);
-    });
+    let width = $state(0);
+
+    let favicon = $derived(favicons.find((f) => width >= f.minWidth)!.svg);
 </script>
 
+<svelte:window bind:innerWidth={width} />
+
 <svelte:head>
-    <link rel="icon" href={faviconHref} />
+    <link rel="icon" href={favicon} />
     <title>falk.website</title>
     <meta
         name="description"
