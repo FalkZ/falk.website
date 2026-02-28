@@ -5,12 +5,15 @@
     import raw3 from "$lib/assets/favicon-3col.svg?raw";
     import raw4 from "$lib/assets/favicon-4col.svg?raw";
     import raw5 from "$lib/assets/favicon-5col.svg?raw";
+    import { browser } from "$app/environment";
+    import IconSun from "@tabler/icons-svelte/icons/sun";
+    import IconMoon from "@tabler/icons-svelte/icons/moon";
 
-    import { MediaQuery } from "svelte/reactivity";
+    let isDark = $state(
+        browser && document.documentElement.classList.contains("dark"),
+    );
 
-    const lightMode = new MediaQuery("prefers-color-scheme: light");
-
-    let fill = $derived(lightMode ? "#000000" : "#ffffff");
+    let fill = $derived(isDark ? "#ffffff" : "#000000");
 
     let { children } = $props();
 
@@ -28,6 +31,60 @@
     let width = $state(0);
 
     let favicon = $derived(favicons.find((f) => width >= f.minWidth)!.svg);
+
+    const applyTheme = (dark: boolean) => {
+        document.documentElement.classList.toggle("dark", dark);
+        isDark = dark;
+        localStorage.setItem("theme", dark ? "dark" : "light");
+    };
+
+    const toggleTheme = (e: MouseEvent) => {
+        const btn = (e.currentTarget as HTMLElement).getBoundingClientRect();
+        const x = btn.left + btn.width / 2;
+        const y = btn.top + btn.height / 2;
+        const endRadius = Math.hypot(
+            Math.max(x, innerWidth - x),
+            Math.max(y, innerHeight - y),
+        );
+
+        if (!document.startViewTransition) {
+            applyTheme(!isDark);
+            return;
+        }
+
+        const goingDark = !isDark;
+        const transition = document.startViewTransition(() => {
+            applyTheme(goingDark);
+        });
+
+        transition.ready.then(() => {
+            document.documentElement.animate(
+                {
+                    clipPath: [
+                        `circle(0px at ${x}px ${y}px)`,
+                        `circle(${endRadius}px at ${x}px ${y}px)`,
+                    ],
+                },
+                {
+                    duration: 750,
+                    easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+                    pseudoElement: "::view-transition-new(root)",
+                },
+            );
+        });
+    };
+
+    $effect(() => {
+        const mql = matchMedia("(prefers-color-scheme: dark)");
+        const handler = (e: MediaQueryListEvent) => {
+            if (!localStorage.getItem("theme")) {
+                document.documentElement.classList.toggle("dark", e.matches);
+                isDark = e.matches;
+            }
+        };
+        mql.addEventListener("change", handler);
+        return () => mql.removeEventListener("change", handler);
+    });
 </script>
 
 <svelte:window bind:innerWidth={width} />
@@ -49,3 +106,15 @@
 </svelte:head>
 
 {@render children()}
+
+<button
+    onclick={toggleTheme}
+    aria-label="Toggle dark mode"
+    class="absolute top-2.5 right-2.5 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full"
+>
+    {#if isDark}
+        <IconSun size={20} />
+    {:else}
+        <IconMoon size={20} />
+    {/if}
+</button>

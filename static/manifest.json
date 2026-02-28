@@ -1,0 +1,8 @@
+{
+    "name": "falk.website",
+    "short_name": "falk",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff"
+}
