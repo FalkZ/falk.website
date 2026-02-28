@@ -31,6 +31,18 @@
 
 <svelte:head>
     <link rel="icon" href={faviconHref} />
+    <title>falk.website</title>
+    <meta
+        name="description"
+        content="falk.website - Personal portfolio and projects"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="falk.website" />
+    <meta
+        property="og:description"
+        content="falk.website - Personal portfolio and projects"
+    />
+    <meta property="og:type" content="website" />
 </svelte:head>
 
 {@render children()}
